@@ -12,7 +12,7 @@ export function Instructor() {
               Instructor Certificado
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Aprendé con los mejores profesionales
+              Aprendé con los instructores más capacitados
             </h2>
             <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Nuestro instructor cuenta con todas las certificaciones necesarias
@@ -21,15 +21,15 @@ export function Instructor() {
             <ul className="grid gap-2">
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Licencia de instructor profesional</span>
+                <span>Matriculado</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Más de 5 años de experiencia</span>
+                <span>Más de 4 años de experiencia</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Especialista en alumnos con ansiedad</span>
+                <span>Especialista en alumnos con miedo</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-primary" />
@@ -56,7 +56,7 @@ export function Instructor() {
                   </p>
                   <div className="mt-2 flex items-center">
                     <div className="rounded bg-primary/10 px-2 py-1 text-xs text-primary">
-                      Certificado Oficial
+                      Matrícula: 247-2024
                     </div>
                   </div>
                 </div>

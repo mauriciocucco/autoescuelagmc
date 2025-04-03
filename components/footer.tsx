@@ -9,7 +9,7 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-lg font-bold">Autoescuela GMC</h3>
             <p className="text-sm text-gray-500">
-              Enseñando a conducir de manera segura y responsable desde 2010.
+              Enseñando a conducir de manera segura y responsable desde 2021.
             </p>
           </div>
           <div className="space-y-4">
@@ -80,7 +80,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center text-sm text-gray-500">
-          <p>© 2023 Autoescuela GMC. Todos los derechos reservados.</p>
+          <p>© 2025 Autoescuela GMC. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
