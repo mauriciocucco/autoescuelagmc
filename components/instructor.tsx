@@ -1,8 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, FileText } from "lucide-react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalTitle,
+} from "@/components/ui/modal";
 
 export function Instructor() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="instructor" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6 mx-auto">
@@ -54,10 +66,19 @@ export function Instructor() {
                   <p className="text-sm text-gray-500">
                     Instructor Principal - Autoescuela GMC
                   </p>
-                  <div className="mt-2 flex items-center">
+                  <div className="mt-2 flex items-center gap-2">
                     <div className="rounded bg-primary/10 px-2 py-1 text-xs text-primary">
                       Matrícula: 247-2024
                     </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-1 text-xs"
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      <FileText className="h-3.5 w-3.5" />
+                      Ver matrícula
+                    </Button>
                   </div>
                 </div>
               </CardContent>
@@ -65,6 +86,46 @@ export function Instructor() {
           </div>
         </div>
       </div>
+
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <ModalHeader>
+          <ModalTitle>Matrícula del Instructor</ModalTitle>
+        </ModalHeader>
+        <ModalContent>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="overflow-hidden rounded-lg border">
+              <div className="relative aspect-[3/4] w-full">
+                <Image
+                  src="/images/matricula-frente.jpg?height=600&width=450&text=Matrícula+Frente"
+                  alt="Matrícula del instructor (frente)"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="p-2 text-center text-sm text-gray-500">
+                Frente de la matrícula
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-lg border">
+              <div className="relative aspect-[3/4] w-full">
+                <Image
+                  src="/images/matricula-dorso.jpg?height=600&width=450&text=Matrícula+Dorso"
+                  alt="Matrícula del instructor (dorso)"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="p-2 text-center text-sm text-gray-500">
+                Dorso de la matrícula
+              </div>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-gray-500 text-center">
+            Certificación oficial emitida por la Secretaría de Transporte de la
+            Provincia de Buenos Aires
+          </p>
+        </ModalContent>
+      </Modal>
     </section>
   );
 }
