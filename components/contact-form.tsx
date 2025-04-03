@@ -1,42 +1,77 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { toast } from "@/hooks/use-toast"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast } from "@/hooks/use-toast";
 
 export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      full_name: formData.get("name"),
+      email: formData.get("email"),
+      phone_number: formData.get("phone"),
+      service_type: formData.get("service"),
+      message: formData.get("message"),
+    };
 
-    toast({
-      title: "Formulario enviado",
-      description: "Nos pondremos en contacto contigo pronto.",
-    })
+    try {
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    setIsSubmitting(false)
-    e.currentTarget.reset()
-  }
+      if (!response.ok) {
+        throw new Error("Error al enviar formulario");
+      }
+
+      toast({
+        title: "Formulario enviado",
+        description: "Nos pondremos en contacto contigo pronto.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "No se pudo enviar el formulario, inténtalo nuevamente.",
+      });
+    }
+
+    setIsSubmitting(false);
+    e.currentTarget.reset();
+  };
 
   return (
     <section id="contacto" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Contáctanos</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Contactános
+            </h2>
             <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              ¿Tienes alguna pregunta? Completa el formulario y te responderemos a la brevedad
+              ¿Tenés alguna pregunta? Completá el formulario y te responderemos
+              a la brevedad
             </p>
           </div>
         </div>
@@ -61,9 +96,15 @@ export function ContactForm() {
                   <SelectValue placeholder="Selecciona un servicio" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="clases-practicas">Clases prácticas</SelectItem>
-                  <SelectItem value="curso-intensivo">Curso intensivo</SelectItem>
-                  <SelectItem value="examen-teorico">Preparación examen teórico</SelectItem>
+                  <SelectItem value="clases-practicas">
+                    Clases prácticas
+                  </SelectItem>
+                  <SelectItem value="curso-intensivo">
+                    Curso intensivo
+                  </SelectItem>
+                  <SelectItem value="examen-teorico">
+                    Preparación examen teórico
+                  </SelectItem>
                   <SelectItem value="otro">Otro</SelectItem>
                 </SelectContent>
               </Select>
@@ -79,6 +120,5 @@ export function ContactForm() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

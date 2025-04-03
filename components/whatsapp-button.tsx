@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { MessageSquare } from "lucide-react"
+import { MessageSquare } from "lucide-react";
 
 export function WhatsAppButton() {
   const openWhatsApp = () => {
     window.open(
-      "https://wa.me/1234567890?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20las%20clases%20de%20manejo",
-      "_blank",
-    )
-  }
+      "https://wa.me/2255627189?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20las%20clases%20de%20manejo",
+      "_blank"
+    );
+  };
 
   return (
     <button
@@ -18,6 +18,5 @@ export function WhatsAppButton() {
     >
       <MessageSquare className="h-6 w-6" />
     </button>
-  )
+  );
 }
-

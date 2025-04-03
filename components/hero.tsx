@@ -1,29 +1,34 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const images = ["/images/car-front.png", "/images/car-back.png", "/images/car-road.jpeg", "/images/car-angle.png"]
+const images = [
+  "/images/car-front.png",
+  "/images/car-back.png",
+  "/images/car-road.jpeg",
+  "/images/car-angle.png",
+];
 
 export function Hero() {
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1))
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+      setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const prev = () => {
-    setCurrent((current) => (current === 0 ? images.length - 1 : current - 1))
-  }
+    setCurrent((current) => (current === 0 ? images.length - 1 : current - 1));
+  };
 
   const next = () => {
-    setCurrent((current) => (current === images.length - 1 ? 0 : current + 1))
-  }
+    setCurrent((current) => (current === images.length - 1 ? 0 : current + 1));
+  };
 
   return (
     <section id="inicio" className="relative w-full h-screen">
@@ -83,24 +88,31 @@ export function Hero() {
         <div className="container px-4 md:px-6 mx-auto">
           <div className="max-w-3xl backdrop-blur-sm bg-black/30 p-6 md:p-8 rounded-lg text-white">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-              Aprende a conducir con Autoescuela GMC
+              Aprendé a conducir con Autoescuela GMC
             </h1>
             <p className="max-w-[600px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mb-6">
-              Clases personalizadas con instructores certificados. Obtén tu licencia de conducir de manera rápida y
-              segura.
+              Clases personalizadas con instructores certificados. Obtené tu
+              licencia de conducir de manera rápida y segura.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
-                <a href="#contacto">Reserva tu clase</a>
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90"
+                asChild
+              >
+                <a href="#contacto">Reservá tu clase</a>
               </Button>
-              <Button size="lg" className="bg-gray-900/80 hover:bg-gray-900 text-white border-0" asChild>
-                <a href="/quiz">Prueba nuestro quiz</a>
+              <Button
+                size="lg"
+                className="bg-gray-900/80 hover:bg-gray-900 text-white border-0"
+                asChild
+              >
+                <a href="/quiz">Probá nuestro quiz</a>
               </Button>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
-

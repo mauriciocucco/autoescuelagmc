@@ -1,6 +1,6 @@
-import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle } from "lucide-react"
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle } from "lucide-react";
 
 export function Instructor() {
   return (
@@ -8,13 +8,15 @@ export function Instructor() {
       <div className="container px-4 md:px-6 mx-auto">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-4">
-            <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm">Instructor Certificado</div>
+            <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm">
+              Instructor Certificado
+            </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Aprende con los mejores profesionales
+              Aprendé con los mejores profesionales
             </h2>
             <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Nuestro instructor cuenta con todas las certificaciones necesarias y años de experiencia enseñando a
-              conducir.
+              Nuestro instructor cuenta con todas las certificaciones necesarias
+              y años de experiencia enseñando a conducir.
             </p>
             <ul className="grid gap-2">
               <li className="flex items-center gap-2">
@@ -23,7 +25,7 @@ export function Instructor() {
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-primary" />
-                <span>Más de 10 años de experiencia</span>
+                <span>Más de 5 años de experiencia</span>
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-primary" />
@@ -40,7 +42,7 @@ export function Instructor() {
               <CardContent className="p-6">
                 <div className="aspect-square overflow-hidden rounded-lg">
                   <Image
-                    src="/placeholder.svg?height=400&width=400"
+                    src="/images/guido-cucco-instructor.jpg?height=400&width=400"
                     alt="Instructor certificado"
                     width={400}
                     height={400}
@@ -48,10 +50,14 @@ export function Instructor() {
                   />
                 </div>
                 <div className="mt-4">
-                  <h3 className="text-xl font-bold">Prof. Carlos Martínez</h3>
-                  <p className="text-sm text-gray-500">Instructor Principal - Autoescuela GMC</p>
+                  <h3 className="text-xl font-bold">Prof. Guido Cucco</h3>
+                  <p className="text-sm text-gray-500">
+                    Instructor Principal - Autoescuela GMC
+                  </p>
                   <div className="mt-2 flex items-center">
-                    <div className="rounded bg-primary/10 px-2 py-1 text-xs text-primary">Certificado Oficial</div>
+                    <div className="rounded bg-primary/10 px-2 py-1 text-xs text-primary">
+                      Certificado Oficial
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -60,6 +66,5 @@ export function Instructor() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-
