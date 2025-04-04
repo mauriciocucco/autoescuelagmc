@@ -9,7 +9,7 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/90 backdrop-filter backdrop-blur-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black text-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
           <div className="relative h-10 w-auto overflow-hidden bg-white rounded">
