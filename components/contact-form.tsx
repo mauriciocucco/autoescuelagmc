@@ -158,7 +158,7 @@ export function ContactForm() {
 
       toast({
         title: "Formulario enviado",
-        description: "Nos pondremos en contacto contigo pronto.",
+        description: "Nos pondremos en contacto contigo pronto 💪.",
       });
     } catch (error) {
       toast({
@@ -177,7 +177,6 @@ export function ContactForm() {
     });
     setTouched({});
     setIsSubmitting(false);
-    e.currentTarget.reset();
   };
 
   return (
