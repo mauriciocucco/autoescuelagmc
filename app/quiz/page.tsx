@@ -164,9 +164,9 @@ export default function QuizPage() {
                     <div className="flex items-start gap-2">
                       {selectedAnswers[question.id] ===
                       question.correctAnswer ? (
-                        <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
+                        <CheckCircle className="h-5 w-5 flex-none text-green-600 mt-0.5" />
                       ) : (
-                        <XCircle className="h-5 w-5 text-red-600 mt-0.5" />
+                        <XCircle className="h-5 w-5 flex-none text-red-600 mt-0.5" />
                       )}
                       <div>
                         <p className="font-medium">{question.question}</p>

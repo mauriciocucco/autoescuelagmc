@@ -94,7 +94,7 @@ export function Instructor() {
         <ModalContent>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="overflow-hidden rounded-lg border">
-              <div className="relative aspect-[3/4] w-full">
+              <div className="relative w-full h-64">
                 <Image
                   src="/images/matricula-frente.jpg?height=600&width=450&text=Matrícula+Frente"
                   alt="Matrícula del instructor (frente)"
@@ -107,7 +107,7 @@ export function Instructor() {
               </div>
             </div>
             <div className="overflow-hidden rounded-lg border">
-              <div className="relative aspect-[3/4] w-full">
+              <div className="relative w-full h-64">
                 <Image
                   src="/images/matricula-dorso.jpg?height=600&width=450&text=Matrícula+Dorso"
                   alt="Matrícula del instructor (dorso)"
