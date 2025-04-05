@@ -31,12 +31,12 @@ const questions = [
     id: 2,
     question: "¿Qué es un carril de aceleración?",
     options: [
-      { id: "a", text: "Es el carril derecho de ua autopista" },
+      { id: "a", text: "Es el carril derecho de una autopista" },
       { id: "b", text: "Es el carril izquierdo de una autopista" },
       { id: "c", text: "Es el carril de incorporación a una autopista" },
       { id: "d", text: "Ninguna de las anteriores" },
     ],
-    correctAnswer: "a",
+    correctAnswer: "c",
   },
   {
     id: 3,
