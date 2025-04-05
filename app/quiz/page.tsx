@@ -25,7 +25,7 @@ const questions = [
       { id: "c", text: "2 segundos" },
       { id: "d", text: "15 segundos" },
     ],
-    correctAnswer: "a",
+    correctAnswer: "c",
   },
   {
     id: 2,
@@ -36,19 +36,19 @@ const questions = [
       { id: "c", text: "Es el carril de incorporación a una autopista" },
       { id: "d", text: "Ninguna de las anteriores" },
     ],
-    correctAnswer: "b",
+    correctAnswer: "a",
   },
   {
     id: 3,
     question:
-      "Además de ser trasladado en el asiento trasero deel vehículo, deberán ubicarse en el dispositivo de retención infantil, los menores de:",
+      "Además de ser trasladado en el asiento trasero del vehículo, deberán ubicarse en el dispositivo de retención infantil los menores de:",
     options: [
       { id: "a", text: "13 kg" },
       { id: "b", text: "36 kg" },
       { id: "c", text: "27 kg" },
       { id: "d", text: "5 kg" },
     ],
-    correctAnswer: "a",
+    correctAnswer: "b",
   },
   {
     id: 4,
@@ -70,11 +70,11 @@ const questions = [
     options: [
       {
         id: "a",
-        text: "La zonan de la calzada común a dos o más arterias, incluidas las sendas o paso peatonales.",
+        text: "La zona de la calzada común a dos o más arterias, incluidas las sendas o pasos peatonales.",
       },
       {
         id: "b",
-        text: "El lugar por donnde se cruza unan calle con una avenida",
+        text: "El lugar por donde se cruza una calle con una avenida",
       },
       { id: "c", text: "El lugar donde se cruzan 2 autopistas" },
       { id: "d", text: "Ninguna de las anteriores" },
