@@ -58,6 +58,19 @@ export function Navbar() {
             Pagos
           </Link>
           <Link
+            href="#giftcard"
+            className="text-sm font-medium hover:underline underline-offset-4 flex items-center gap-2"
+          >
+            <Image
+              src="/images/gift-card-gmc.png"
+              alt="Icono de regalo"
+              width={16}
+              height={16}
+              className="object-contain"
+            />
+            Gift Card
+          </Link>
+          <Link
             href="#contacto"
             className="text-sm font-medium hover:underline underline-offset-4"
           >
@@ -133,6 +146,13 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               Quiz
+            </Link>
+            <Link
+              href="#giftcard"
+              className="text-sm font-medium hover:underline underline-offset-4"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Gift Card
             </Link>
           </nav>
         </div>

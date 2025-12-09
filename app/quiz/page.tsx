@@ -16,71 +16,98 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft, CheckCircle, XCircle } from "lucide-react";
 
 const questions = [
-  {
-    id: 1,
-    question: "¿Cuál es distancia de seguridad a mantener un vehiculo?",
-    options: [
-      { id: "a", text: "10 segundos" },
-      { id: "b", text: "15 segundos" },
-      { id: "c", text: "2 segundos" },
-      { id: "d", text: "15 segundos" },
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: 2,
-    question: "¿Qué es un carril de aceleración?",
-    options: [
-      { id: "a", text: "Es el carril derecho de una autopista" },
-      { id: "b", text: "Es el carril izquierdo de una autopista" },
-      { id: "c", text: "Es el carril de incorporación a una autopista" },
-      { id: "d", text: "Ninguna de las anteriores" },
-    ],
-    correctAnswer: "c",
-  },
-  {
-    id: 3,
-    question:
-      "Además de ser trasladado en el asiento trasero del vehículo, deberán ubicarse en el dispositivo de retención infantil los menores de:",
-    options: [
-      { id: "a", text: "13 kg" },
-      { id: "b", text: "36 kg" },
-      { id: "c", text: "27 kg" },
-      { id: "d", text: "5 kg" },
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: 4,
-    question: "En el caso de niebla, ¿es mejor parar en la banquina?",
-    options: [
-      { id: "a", text: "Cuando la niebla está muy cerrada: si" },
-      {
-        id: "b",
-        text: "Nunca. Si no hay otra posibilidad debe alejarse lo más posible de la calzada y de la banquina.",
-      },
-      { id: "c", text: "Siempre continuar" },
-      { id: "d", text: "Cuando la niebla no está muy cerrada: si" },
-    ],
-    correctAnswer: "b",
-  },
-  {
-    id: 5,
-    question: "¿Qué se debe entender por bocacalle?",
-    options: [
-      {
-        id: "a",
-        text: "La zona de la calzada común a dos o más arterias, incluidas las sendas o pasos peatonales.",
-      },
-      {
-        id: "b",
-        text: "El lugar por donde se cruza una calle con una avenida",
-      },
-      { id: "c", text: "El lugar donde se cruzan 2 autopistas" },
-      { id: "d", text: "Ninguna de las anteriores" },
-    ],
-    correctAnswer: "a",
-  },
+{
+  id: 1,
+  question: "¿Qué documentación debe tener el conductor?",
+  options: [
+    { id: "a", text: "Licencia de conducir" },
+    { id: "b", text: "Cédula verde" },
+    { id: "c", text: "Recibo de patente" },
+    { id: "d", text: "Seguro vigente" },
+    { id: "e", text: "VTV (Verificación Técnica Vehicular)" },
+    { id: "f", text: "Todas" } 
+  ],
+  correctAnswer: "f"
+},
+{
+  id: 2,
+  question: "¿Cuál es la mano de circulación reglamentaria?",
+  options: [
+    { id: "a", text: "La mano izquierda" },   
+    { id: "b", text: "La mano derecha" },     
+    { id: "c", text: "Ambas manos" },         
+    { id: "d", text: "La mano central" }      
+  ],
+  correctAnswer: "b"
+},
+{
+  id: 3,
+  question: "¿Por dónde se adelanta a otro vehículo?",
+  options: [
+    { id: "a", text: "Por la mano derecha" },   
+    { id: "b", text: "Por la mano izquierda" }, 
+    { id: "c", text: "Por la banquina" },       
+    { id: "d", text: "Por el carril central" } 
+  ],
+  correctAnswer: "b"
+},
+{
+  id: 4,
+  question: "¿Qué elementos de seguridad deben llevar los vehículos que circulan?",
+  options: [
+    { id: "a", text: "Freno de mano, espejo retrovisor, balizas" },
+    { id: "b", text: "Paragolpes, cinturón de seguridad, matafuegos" },
+    { id: "c", text: "Herramientas de auxilio, balizas, cinturón de seguridad" },
+    { id: "d", text: "Todas las anteriores" } 
+  ],
+  correctAnswer: "d"
+},
+{
+  id: 5,
+  question: "Si en una esquina se encuentran dos vehículos, ¿quién tiene la prioridad de paso?",
+  options: [
+    { id: "a", text: "El que viene por la izquierda" },   
+    { id: "b", text: "El que viene por la derecha" },     
+    { id: "c", text: "El que llega primero" },            
+    { id: "d", text: "El vehículo más grande" }          
+  ],
+  correctAnswer: "b"
+},
+{
+  id: 6,
+  question: "¿Qué distancia deben mantener los vehículos en marcha respecto al que está adelante?",
+  options: [
+    { id: "a", text: "5 metros sin importar la velocidad" },            
+    { id: "b", text: "A 10 metros por cada 10 km/h" }, 
+     { id: "c", text: "A 1 metro por km/h de velocidad" },           
+    { id: "d", text: "Lo más cerca posible para ganar tiempo" }  
+  ],
+  correctAnswer: "c",
+  
+},
+{
+  id: 7,
+  question: "En las esquinas o en zona con senda peatonal, ¿quién tiene el derecho de paso?",
+  options: [
+    { id: "a", text: "El peatón siempre" },           
+    { id: "b", text: "El vehículo más rápido" },      
+    { id: "c", text: "El que toca bocina primero" },  
+    { id: "d", text: "El que viene por la derecha" }  
+  ],
+  correctAnswer: "a",
+  
+},
+{
+  id: 8,
+  question: "En una rotonda, ¿quién tiene prioridad de paso?",
+  options: [ 
+    { id: "a", text: "El que quiere ingresar" },            
+    { id: "b", text: "El que viene por la izquierda" },        
+    { id: "c", text: "El vehículo más grande" },
+    { id: "d", text: "El que está circulando y el que sale" }                
+  ],
+  correctAnswer: "d"
+}
 ];
 
 export default function QuizPage() {

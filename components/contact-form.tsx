@@ -180,11 +180,11 @@ export function ContactForm() {
   };
 
   return (
-    <section id="contacto" className="w-full py-12 md:py-24 lg:py-32">
+    <section id="contacto" className="w-full py-6 md:py-8 lg:py-14 bg-gray-50">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl md:mt-8 mb-6">
               Contactános
             </h2>
             <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">

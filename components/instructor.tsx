@@ -16,7 +16,7 @@ export function Instructor() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section id="instructor" className="w-full py-12 md:py-24 lg:py-32">
+    <section id="instructor" className="w-full py-6 md:py-8 lg:py-14">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-4">
@@ -32,19 +32,19 @@ export function Instructor() {
             </p>
             <ul className="grid gap-2">
               <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
+                <CheckCircle className="h-6 w-6 text-primary" />
                 <span>Matriculado</span>
               </li>
               <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
+                <CheckCircle className="h-6 w-6 text-primary" />
                 <span>Más de 4 años de experiencia</span>
               </li>
               <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
+                <CheckCircle className="h-6 w-6 text-primary" />
                 <span>Especialista en alumnos con miedo</span>
               </li>
               <li className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-primary" />
+                <CheckCircle className="h-6 w-6 text-primary" />
                 <span>Actualización constante en normativas de tránsito</span>
               </li>
             </ul>

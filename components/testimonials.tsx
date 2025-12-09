@@ -5,7 +5,7 @@ export function Testimonials() {
   return (
     <section
       id="testimonios"
-      className="w-full py-12 md:py-24 lg:py-32 bg-gray-50"
+      className="w-full py-12 md:py-24 lg:py-14 bg-gray-50"
     >
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -19,83 +19,79 @@ export function Testimonials() {
           </div>
         </div>
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-1 mb-2">
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
+          <Card className="rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+            <CardContent className="p-6 flex flex-col justify-between h-full">
+              <div>
+                <div className="flex items-center space-x-1 mb-2">
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                </div>
+                <p className="text-sm text-gray-500 mb-4">
+                  "Excelente experiencia!
+                  Mucha paciencia siempre impulsándote a avanzar y no rendirte
+                  Yo hoy ya tengo mi licencia por más que lo pospuse por un tiempo largo. Gracias Guido!!!"
+                </p>
               </div>
-              <p className="text-sm text-gray-500 mb-4">
-                "Guido es el mejor profesor, gracias a él pude conseguir mi
-                licencia. Llegué al momento confiada, todo por su paciencia,
-                profesionalismo. Lo súper recomiendo. Te ayuda a tener confianza
-                en vos qué eso es fundamental a la hora de manejar en la
-                calle.."
-              </p>
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                  <span className="text-sm font-medium">ML</span>
+                  <span className="text-sm font-medium">FA</span>
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Belén Henares</p>
-                  <p className="text-xs text-gray-500">Alumna - 2024</p>
+                  <p className="text-sm font-medium">Flor de Abreo</p>
+                  <p className="text-xs text-gray-500">Alumna - 2025</p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-1 mb-2">
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
+          <Card className="rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+            <CardContent className="p-6 flex flex-col justify-between h-full">
+              <div>
+                <div className="flex items-center space-x-1 mb-2">
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                </div>
+                <p className="text-sm text-gray-500 mb-4">
+                  "Aprender a manejar puede ser una experiencia estresante, pero con Guido se transforma en algo claro, ameno y hasta disfrutable. Tiene una forma de enseñar que transmite confianza desde el primer momento. Muy agradecido por su dedicación y profesionalismo. Totalmente recomendable!!"
+                </p>
               </div>
-              <p className="text-sm text-gray-500 mb-4">
-                "Guido es el mejor instructor de manejo de toda la costa! Es muy
-                amable y tiene La Paz y la tranquilidad que todos necesitamos
-                para poder aprender a manejar. Gracias Guido 🙌🏽."
-              </p>
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                  <span className="text-sm font-medium">JR</span>
+                  <span className="text-sm font-medium">JME</span>
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Micaela Rolon</p>
-                  <p className="text-xs text-gray-500">Alumna - 2024</p>
+                  <p className="text-sm font-medium">Jose Manuel Esteves</p>
+                  <p className="text-xs text-gray-500">Alumno - 2025</p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-1 mb-2">
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
-                <Star className="h-5 w-5 fill-primary text-primary" />
+          <Card className="rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+            <CardContent className="p-6 flex flex-col justify-between h-full">
+              <div>
+                <div className="flex items-center space-x-1 mb-2">
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                  <Star className="h-5 w-5 fill-primary text-primary" />
+                </div>
+                <p className="text-sm text-gray-500 mb-4">
+                  "Excelente experiencia!!! Instructor con paciencia y simpleza al enseñar, te brinda seguridad para afrontar el miedo a manejar. Si tenes que hacer un regalo o conocen a alguien que quiere manejar y no se anime, es la opción perfecta como lo fue en mi caso. El regalo de mi cumple de un curso de manejo fue genial y acá estoy hoy ya tengo mi licencia!! Gracias!!!"
+                </p>
               </div>
-              <p className="text-sm text-gray-500 mb-4">
-                "100% RECOMENDABLE... Ya tenia experiencia manejando en la
-                ciudad y tengo registro pero necesitaba confianza y seguridad en
-                la ruta. Es muy importante saber lo suficiente para salir. Por
-                eso decidí tomar clases y enfrentar el miedo. Ayer pude animarme
-                a salir a la ruta acompañada x el que realmente sabe. Con
-                perseverancia todo se puede!! Gracias al profe y su paciencia x
-                supuesto 😃."
-              </p>
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                  <span className="text-sm font-medium">AG</span>
+                  <span className="text-sm font-medium">AC</span>
                 </div>
                 <div>
-                  <p className="text-sm font-medium">Maru Torres</p>
-                  <p className="text-xs text-gray-500">Alumna - 2023</p>
+                  <p className="text-sm font-medium">Andrea Carrara</p>
+                  <p className="text-xs text-gray-500">Alumna - 2025</p>
                 </div>
               </div>
             </CardContent>
