@@ -2,14 +2,14 @@ import type React from "react";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const viewport = "width=device-width, initial-scale=1.0";
 
 export const metadata = {
   title: "Autoescuela GMC 🚗🚘",
   description: "Escuela de manejo GMC.",
-  viewport: "width=device-width, initial-scale=1.0",
   openGraph: {
     title: "Autoescuela GMC 🚗🚘",
     url: "https://autoescuelagmc.com",
@@ -25,8 +25,8 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className="light" suppressHydrationWarning>
-      <body>
+    <html lang="es" suppressHydrationWarning>
+      <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           {children}
         </ThemeProvider>
