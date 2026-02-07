@@ -1,3 +1,68 @@
+/* Animación cupidos flotando */
+@keyframes floating-cupid {
+  0% {
+    transform: translateY(0) scale(1) rotate(-10deg);
+    opacity: 0.8;
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-40px) scale(1.1) rotate(5deg);
+  }
+
+  100% {
+    transform: translateY(-120px) scale(1.15) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+.animate-floating-cupid {
+  animation: floating-cupid 4.5s linear infinite;
+}
+
+/* Animación flechas flotando */
+@keyframes floating-arrow {
+  0% {
+    transform: translateY(0) scale(1) rotate(-20deg);
+    opacity: 0.7;
+  }
+
+  80% {
+    opacity: 0.9;
+    transform: translateY(-60px) scale(1.1) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-140px) scale(1.2) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+.animate-floating-arrow {
+  animation: floating-arrow 3.2s linear infinite;
+}
+
+/* Animación corazones flotando para el modal de San Valentín */
+@keyframes floating-heart {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-120px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.animate-floating-heart {
+  animation: floating-heart 3.5s linear infinite;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,6 +113,7 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -88,6 +154,7 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
