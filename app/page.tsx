@@ -1,18 +1,19 @@
-"use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Navbar } from "@/components/navbar";
-import { Hero } from "@/components/hero";
-import { Features } from "@/components/features";
-import { Testimonials } from "@/components/testimonials";
-import { Instructor } from "@/components/instructor";
-import { PaymentMethods } from "@/components/payment-methods";
-import { GiftCardSection } from "@/components/gift-card-section";
-import { ContactForm } from "@/components/contact-form";
-import { WhatsAppButton } from "@/components/whatsapp-button";
-import { Footer } from "@/components/footer";
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { Navbar } from '@/components/navbar';
+import { Hero } from '@/components/hero';
+import { Features } from '@/components/features';
+import { Testimonials } from '@/components/testimonials';
+import { Instructor } from '@/components/instructor';
+import { PaymentMethods } from '@/components/payment-methods';
+import { GiftCardSection } from '@/components/gift-card-section';
+import { ContactForm } from '@/components/contact-form';
+import { WhatsAppButton } from '@/components/whatsapp-button';
 import { GiftCardModal } from "@/components/gift-card-modal";
-import { CertificateSection } from "@/components/certificate";
+import { Footer } from '@/components/footer';
+import { HotSaleBanner } from '@/components/hot-sale-banner';
+import { CertificateSection } from '@/components/certificate';
 
 export default function Home() {
   const router = useRouter();
@@ -34,9 +35,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className='flex min-h-screen flex-col'>
       <Navbar />
-      <main className="flex-1">
+      <HotSaleBanner />
+      <main className='flex-1'>
         <Hero />
         <GiftCardModal />
         <Features />
@@ -52,4 +54,3 @@ export default function Home() {
     </div>
   );
 }
-
