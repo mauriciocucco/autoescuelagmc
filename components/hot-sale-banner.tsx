@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/analytics';
 
 const HOT_SALE_START = new Date(2026, 4, 11, 0, 0, 0);
 const HOT_SALE_END = new Date(2026, 4, 13, 23, 59, 0);
@@ -98,17 +99,23 @@ export function HotSaleBanner() {
             </div>
           )}
         </div>
-                  <span
-            aria-hidden='true'
-            className='hidden md:inline-flex items-center text-4xl font-black leading-none text-white/90 drop-shadow'
-          >
-            →
-          </span>
+        <span
+          aria-hidden='true'
+          className='hidden md:inline-flex items-center text-4xl font-black leading-none text-white/90 drop-shadow'
+        >
+          →
+        </span>
 
         {/* CTA WhatsApp */}
         <Link
           href='https://wa.me/2255627189?text=Hola,%20quiero%20aprovechar%20el%20Hot%20Sale%20de%20Autoescuela%20GMC.%20%C2%BFMe%20das%20m%C3%A1s%20info?'
           target='_blank'
+          onClick={() =>
+            trackEvent('whatsapp_click', {
+              location: 'hot_sale_banner',
+              campaign: 'hot_sale_2026',
+            })
+          }
           className='flex items-center gap-1.5 bg-white text-green-600 font-bold text-xs sm:text-sm px-3 py-1.5 rounded-full shadow hover:bg-green-50 transition whitespace-nowrap'
         >
           <svg
@@ -122,7 +129,6 @@ export function HotSaleBanner() {
           </svg>
           Consultá ahora
         </Link>
-
       </div>
 
       {/* Cerrar - mobile absoluto arriba a la derecha */}

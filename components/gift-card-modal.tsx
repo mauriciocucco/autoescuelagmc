@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/analytics';
 
 export function GiftCardModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +37,13 @@ export function GiftCardModal() {
         <Link
           href='https://wa.me/2255627189?text=Hola,%20quiero%20aprovechar%20el%20Hot%20Sale%20de%20Autoescuela%20GMC.%20%C2%BFMe%20das%20m%C3%A1s%20info?'
           target='_blank'
-          onClick={closeModal}
+          onClick={() => {
+            trackEvent('whatsapp_click', {
+              location: 'gift_card_modal',
+              campaign: 'hot_sale_2026',
+            });
+            closeModal();
+          }}
         >
           <Image
             src='/images/hot-sale.jpeg'
