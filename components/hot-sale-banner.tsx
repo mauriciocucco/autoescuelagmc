@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const HOT_SALE_START = new Date('2026-05-11T00:00:00');
+const HOT_SALE_START = new Date(2026, 4, 11, 0, 0, 0);
+const HOT_SALE_END = new Date(2026, 4, 13, 23, 59, 0);
 
 function useCountdown(targetDate: Date) {
   const [timeLeft, setTimeLeft] = useState({
@@ -38,11 +39,12 @@ function useCountdown(targetDate: Date) {
 
 export function HotSaleBanner() {
   const [visible, setVisible] = useState(true);
-  const { days, hours, minutes, seconds } = useCountdown(HOT_SALE_START);
+  const hasStarted = HOT_SALE_START.getTime() <= Date.now();
+  const hasEnded = HOT_SALE_END.getTime() <= Date.now();
+  const countdownTarget = hasStarted ? HOT_SALE_END : HOT_SALE_START;
+  const { days, hours, minutes, seconds } = useCountdown(countdownTarget);
 
   if (!visible) return null;
-
-  const started = HOT_SALE_START.getTime() <= Date.now();
 
   return (
     <div className='hot-sale-banner relative w-full overflow-hidden bg-gradient-to-r from-[#0f4c81] via-[#0e8a6e] to-[#00c9a7]'>
@@ -59,15 +61,19 @@ export function HotSaleBanner() {
         <div className='flex flex-col md:flex-row items-center gap-1 md:gap-4 flex-1 justify-center text-white'>
           <span className='font-extrabold text-lg sm:text-2xl md:text-4xl leading-tight drop-shadow'>
             <span className='fire-flame'>🔥</span>{' '}
-            {started ? '¡HOT SALE EN CURSO!' : '¡YA LLEGA EL HOT SALE!'}{' '}
+            {hasEnded
+              ? '¡EL HOT SALE TERMINO!'
+              : hasStarted
+                ? '¡EMPEZÓ EL HOT SALE!'
+                : '¡YA LLEGA EL HOT SALE!'}{' '}
             <span className='fire-flame'>🔥</span>
           </span>
 
           {/* Contador */}
-          {!started && (
+          {!hasEnded && (
             <div className='flex items-center gap-1.5'>
               <span className='text-white/80 text-xl hidden md:inline'>
-                Empieza en
+                {hasStarted ? 'Termina en' : 'Empieza en'}
               </span>
               {[
                 { label: 'días', value: days },
@@ -92,6 +98,12 @@ export function HotSaleBanner() {
             </div>
           )}
         </div>
+                  <span
+            aria-hidden='true'
+            className='hidden md:inline-flex items-center text-4xl font-black leading-none text-white/90 drop-shadow'
+          >
+            →
+          </span>
 
         {/* CTA WhatsApp */}
         <Link
@@ -111,14 +123,6 @@ export function HotSaleBanner() {
           Consultá ahora
         </Link>
 
-        {/* Cerrar - solo desktop inline */}
-        <button
-          onClick={() => setVisible(false)}
-          aria-label='Cerrar banner'
-          className='hidden md:flex flex-shrink-0 text-white/80 hover:text-white text-lg font-bold leading-none ml-1'
-        >
-          ✕
-        </button>
       </div>
 
       {/* Cerrar - mobile absoluto arriba a la derecha */}
