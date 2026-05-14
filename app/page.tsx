@@ -57,10 +57,9 @@ export default function Home() {
         }}
       />
       <Navbar />
-      <HotSaleBanner />
       <main className='flex-1'>
         <Hero />
-        <GiftCardModal />
+        {/* <GiftCardModal /> */}
         <Features />
         <Testimonials />
         <Instructor />
