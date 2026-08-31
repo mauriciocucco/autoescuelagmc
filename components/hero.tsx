@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
   {
-    src: '/images/imagen-principal.jpg',
+    src: '/images/imagen-principal.jpeg',
     alt: 'Alumno realizando una clase de manejo con Autoescuela GMC',
   },
   {
@@ -31,7 +31,7 @@ const images = [
     alt: 'Clase práctica para aprender a conducir con seguridad',
   },
   {
-    src: '/images/imagen-seis.jpg',
+    src: '/images/imagen-seis.jpeg',
     alt: 'Autoescuela GMC acompañando a nuevos conductores',
   },
   {
@@ -118,7 +118,7 @@ export function Hero() {
         <div className='container px-5 md:px-16 mx-auto'>
           <div className='max-w-2xl backdrop-blur-sm bg-black/30 p-6 md:p-6 rounded-lg text-white'>
             <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4'>
-              Clases de manejo en Villa Gesell con Autoescuela GMC
+              Clases de manejo en Pinamar y Villa Gesell con Autoescuela GMC
             </h1>
             <p className='max-w-[600px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mb-6'>
               Aprendé a conducir con clases personalizadas, instructores

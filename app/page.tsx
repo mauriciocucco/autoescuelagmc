@@ -8,6 +8,7 @@ import { PaymentMethods } from '@/components/payment-methods';
 import { GiftCardSection } from '@/components/gift-card-section';
 import { ContactForm } from '@/components/contact-form';
 import { GiftCardModal } from '@/components/gift-card-modal';
+import { FriendshipModal } from '@/components/friendship-modal';
 import { Footer } from '@/components/footer';
 import { HotSaleBanner } from '@/components/hot-sale-banner';
 import { CertificateSection } from '@/components/certificate';
@@ -59,6 +60,7 @@ export default function Home() {
       <Navbar />
       <main className='flex-1'>
         <Hero />
+        {/* <FriendshipModal /> */}
         {/* <GiftCardModal /> */}
         <Features />
         <Testimonials />
