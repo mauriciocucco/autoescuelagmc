@@ -16,7 +16,13 @@ import {
 } from '@/components/ui/select';
 import { toast } from '@/hooks/use-toast';
 import { trackEvent } from '@/lib/analytics';
-import { AlertCircle } from 'lucide-react';
+import {
+  AlertCircle,
+  CheckCircle2,
+  Facebook,
+  Instagram,
+  Loader2,
+} from 'lucide-react';
 
 type FormData = {
   name: string;
@@ -36,6 +42,8 @@ type FormErrors = {
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isTakingLong, setIsTakingLong] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -53,7 +61,7 @@ export function ContactForm() {
     setMessageChars(formData.message.length);
   }, [formData.message]);
 
-  const validateForm = (): boolean => {
+  const validateForm = (): FormErrors => {
     const newErrors: FormErrors = {};
 
     // Name validation
@@ -86,7 +94,7 @@ export function ContactForm() {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return newErrors;
   };
 
   const handleChange = (
@@ -124,17 +132,18 @@ export function ContactForm() {
     setTouched(allTouched);
 
     // Validate form
-    const isValid = validateForm();
+    const validationErrors = validateForm();
 
-    if (!isValid) {
+    if (Object.keys(validationErrors).length > 0) {
       // Scroll to the first error
-      const firstErrorField = Object.keys(errors)[0];
+      const firstErrorField = Object.keys(validationErrors)[0];
       const errorElement = document.getElementById(firstErrorField);
       errorElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
     setIsSubmitting(true);
+    setIsTakingLong(false);
 
     const data = {
       full_name: formData.name,
@@ -144,13 +153,21 @@ export function ContactForm() {
       message: formData.message,
     };
 
+    let timeout: number | undefined;
+    let slowMessageTimeout: number | undefined;
+
     try {
+      const controller = new AbortController();
+      timeout = window.setTimeout(() => controller.abort(), 12000);
+      slowMessageTimeout = window.setTimeout(() => setIsTakingLong(true), 3500);
+
       const response = await fetch(`${apiUrl}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
 
       if (!response.ok) {
@@ -166,23 +183,34 @@ export function ContactForm() {
         title: 'Formulario enviado',
         description: 'Nos pondremos en contacto contigo pronto 💪.',
       });
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: '',
+      });
+      setTouched({});
+      setIsSubmitted(true);
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'No se pudo enviar el formulario, inténtalo nuevamente.',
+        description:
+          error instanceof DOMException && error.name === 'AbortError'
+            ? 'El servidor tardó demasiado en responder. Intentá nuevamente en unos segundos.'
+            : 'No se pudo enviar el formulario, inténtalo nuevamente.',
       });
+    } finally {
+      if (timeout) {
+        window.clearTimeout(timeout);
+      }
+      if (slowMessageTimeout) {
+        window.clearTimeout(slowMessageTimeout);
+      }
+      setIsTakingLong(false);
+      setIsSubmitting(false);
     }
-
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    });
-    setTouched({});
-    setIsSubmitting(false);
   };
 
   return (
@@ -200,27 +228,80 @@ export function ContactForm() {
           </div>
         </div>
         <div className='mx-auto max-w-lg mt-8'>
-          <form onSubmit={handleSubmit} className='grid gap-4'>
-            <div className='grid gap-2'>
-              <Label htmlFor='name' className='flex items-center gap-1'>
-                Nombre completo
-                <span className='text-red-500'>*</span>
-              </Label>
-              <Input
-                id='name'
-                name='name'
-                value={formData.name}
-                onChange={handleChange}
-                onBlur={() => handleBlur('name')}
-                className={errors.name && touched.name ? 'border-red-500' : ''}
-              />
-              {errors.name && touched.name && (
-                <p className='text-sm text-red-500 flex items-center gap-1 mt-1'>
-                  <AlertCircle className='h-3 w-3' />
-                  {errors.name}
+          {isSubmitted ? (
+            <div
+              className='rounded-lg border border-green-200 bg-white p-6 text-center shadow-sm'
+              role='status'
+              aria-live='polite'
+            >
+              <CheckCircle2 className='mx-auto h-10 w-10 text-green-600' />
+              <h3 className='mt-4 text-2xl font-semibold text-gray-900'>
+                Gracias por tu consulta
+              </h3>
+              <p className='mt-2 text-gray-500'>
+                Recibimos tu mensaje correctamente. Nos comunicaremos a la
+                brevedad.
+              </p>
+
+              <div className='mt-6'>
+                <p className='text-sm font-medium text-gray-900'>
+                  Mientras tanto, seguinos en nuestras redes
                 </p>
-              )}
+                <div className='mt-3 flex justify-center gap-3'>
+                  <a
+                    href='https://www.instagram.com/clasesdemanejo_gmc/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900'
+                    aria-label='Seguir a Autoescuela GMC en Instagram'
+                  >
+                    <Instagram className='h-5 w-5' />
+                  </a>
+                  <a
+                    href='https://www.facebook.com/p/Autoescuela-GMC-100092333736848/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-600 transition-colors hover:border-gray-900 hover:text-gray-900'
+                    aria-label='Seguir a Autoescuela GMC en Facebook'
+                  >
+                    <Facebook className='h-5 w-5' />
+                  </a>
+                </div>
+              </div>
+
+              <Button
+                type='button'
+                variant='outline'
+                className='mt-6'
+                onClick={() => setIsSubmitted(false)}
+              >
+                Enviar otra consulta
+              </Button>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className='grid gap-4'>
+              <div className='grid gap-2'>
+                <Label htmlFor='name' className='flex items-center gap-1'>
+                  Nombre completo
+                  <span className='text-red-500'>*</span>
+                </Label>
+                <Input
+                  id='name'
+                  name='name'
+                  value={formData.name}
+                  onChange={handleChange}
+                  onBlur={() => handleBlur('name')}
+                  className={
+                    errors.name && touched.name ? 'border-red-500' : ''
+                  }
+                />
+                {errors.name && touched.name && (
+                  <p className='text-sm text-red-500 flex items-center gap-1 mt-1'>
+                    <AlertCircle className='h-3 w-3' />
+                    {errors.name}
+                  </p>
+                )}
+              </div>
 
             <div className='grid gap-2'>
               <Label htmlFor='email' className='flex items-center gap-1'>
@@ -349,10 +430,28 @@ export function ContactForm() {
               )}
             </div>
 
-            <Button type='submit' disabled={isSubmitting} className='mt-2'>
-              {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
-            </Button>
-          </form>
+              <Button
+                type='submit'
+                disabled={isSubmitting}
+                className='mt-2 gap-2'
+                aria-busy={isSubmitting}
+              >
+                {isSubmitting && <Loader2 className='h-4 w-4 animate-spin' />}
+                {isSubmitting ? 'Enviando mensaje' : 'Enviar mensaje'}
+              </Button>
+
+              {isSubmitting && (
+                <p
+                  className='text-sm text-gray-500 text-center'
+                  aria-live='polite'
+                >
+                  {isTakingLong
+                    ? 'Está tardando más de lo normal, pero seguimos intentando.'
+                    : 'Estamos enviando tu consulta...'}
+                </p>
+              )}
+            </form>
+          )}
         </div>
       </div>
     </section>

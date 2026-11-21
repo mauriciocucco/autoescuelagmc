@@ -14,9 +14,9 @@ import { HotSaleBanner } from '@/components/hot-sale-banner';
 import { CertificateSection } from '@/components/certificate';
 
 export const metadata: Metadata = {
-  title: 'Clases de Manejo en Villa Gesell',
+  title: 'Clases de Manejo en Villa Gesell, Pinamar y Partido de la Costa',
   description:
-    'Aprendé a conducir con Autoescuela GMC en Villa Gesell. Clases personalizadas, instructores certificados y preparación para la licencia.',
+    'Aprendé a conducir con Autoescuela GMC en Villa Gesell, Pinamar y Partido de la Costa, incluyendo Mar de Ajó, San Bernardo y La Lucila del Mar. Clases personalizadas e instructores certificados.',
   alternates: {
     canonical: '/',
   },
@@ -38,10 +38,14 @@ const localBusinessJsonLd = {
     addressRegion: 'Buenos Aires',
     addressCountry: 'AR',
   },
-  areaServed: {
-    '@type': 'City',
-    name: 'Villa Gesell',
-  },
+  areaServed: [
+    { '@type': 'City', name: 'Villa Gesell' },
+    { '@type': 'City', name: 'Pinamar' },
+    { '@type': 'AdministrativeArea', name: 'Partido de la Costa' },
+    { '@type': 'City', name: 'Mar de Ajó' },
+    { '@type': 'City', name: 'San Bernardo' },
+    { '@type': 'City', name: 'La Lucila del Mar' },
+  ],
   sameAs: [
     'https://www.facebook.com/p/Autoescuela-GMC-100092333736848/',
     'https://www.instagram.com/clasesdemanejo_gmc/',
