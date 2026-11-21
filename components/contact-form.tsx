@@ -16,12 +16,14 @@ import {
 } from '@/components/ui/select';
 import { toast } from '@/hooks/use-toast';
 import { trackEvent } from '@/lib/analytics';
+import { Reveal } from '@/components/reveal';
 import {
   AlertCircle,
   CheckCircle2,
   Facebook,
   Instagram,
   Loader2,
+  MessageCircle,
 } from 'lucide-react';
 
 type FormData = {
@@ -44,7 +46,11 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isTakingLong, setIsTakingLong] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+  // El backend real es el de onrender.com; el fallback evita romper el form
+  // si la variable de entorno no está configurada en el deploy.
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ||
+    'https://autoescuelagmc-backend.onrender.com';
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -171,7 +177,10 @@ export function ContactForm() {
       });
 
       if (!response.ok) {
-        throw new Error('Error al enviar formulario');
+        // 4xx = problema con los datos enviados; 5xx = problema del servidor.
+        throw new Error(
+          response.status >= 500 ? 'server_error' : 'request_error',
+        );
       }
 
       trackEvent('contact_form_submit', {
@@ -180,8 +189,8 @@ export function ContactForm() {
       });
 
       toast({
-        title: 'Formulario enviado',
-        description: 'Nos pondremos en contacto contigo pronto 💪.',
+        title: '¡Consulta enviada!',
+        description: 'Gracias por contactarnos. En breve nos comunicaremos con vos 💪.',
       });
 
       setFormData({
@@ -194,13 +203,21 @@ export function ContactForm() {
       setTouched({});
       setIsSubmitted(true);
     } catch (error) {
-      toast({
-        title: 'Error',
-        description:
-          error instanceof DOMException && error.name === 'AbortError'
-            ? 'El servidor tardó demasiado en responder. Intentá nuevamente en unos segundos.'
-            : 'No se pudo enviar el formulario, inténtalo nuevamente.',
-      });
+      let description =
+        'No se pudo enviar el formulario, inténtalo nuevamente.';
+
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        description =
+          'El servidor tardó demasiado en responder. Intentá nuevamente en unos segundos.';
+      } else if (error instanceof Error && error.message === 'server_error') {
+        description =
+          'El servidor tuvo un problema. Intentá de nuevo en unos minutos o escribinos por WhatsApp.';
+      } else if (error instanceof Error && error.message === 'request_error') {
+        description =
+          'No pudimos procesar los datos. Revisá los campos o escribinos por WhatsApp.';
+      }
+
+      toast({ title: 'Error', description });
     } finally {
       if (timeout) {
         window.clearTimeout(timeout);
@@ -214,37 +231,61 @@ export function ContactForm() {
   };
 
   return (
-    <section id='contacto' className='w-full py-6 md:py-8 lg:py-14 bg-gray-50'>
+    <section id='contacto' className='w-full bg-[#F4F7FE] py-16 md:py-24'>
       <div className='container px-4 md:px-6 mx-auto'>
-        <div className='flex flex-col items-center justify-center space-y-4 text-center'>
-          <div className='space-y-2'>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl md:mt-8 mb-6'>
+        <Reveal className='mx-auto flex max-w-2xl flex-col items-center space-y-4 text-center'>
+          <span className='inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-700'>
+            Contacto
+          </span>
+          <div className='space-y-3'>
+            <h2 className='text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-5xl'>
               Contactános
             </h2>
-            <p className='max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
+            <p className='text-slate-500 md:text-lg'>
               ¿Tenés alguna pregunta? Completá el formulario y te responderemos
-              a la brevedad
+              a la brevedad.
             </p>
           </div>
-        </div>
-        <div className='mx-auto max-w-lg mt-8'>
+        </Reveal>
+        <Reveal
+          delay={120}
+          className='mx-auto mt-10 max-w-xl rounded-3xl border border-slate-200/80 bg-white p-6 shadow-card md:p-8'
+        >
           {isSubmitted ? (
             <div
-              className='rounded-lg border border-green-200 bg-white p-6 text-center shadow-sm'
+              className='rounded-xl border border-green-200 bg-white p-8 text-center shadow-md animate-in fade-in-50 duration-300'
               role='status'
               aria-live='polite'
             >
-              <CheckCircle2 className='mx-auto h-10 w-10 text-green-600' />
-              <h3 className='mt-4 text-2xl font-semibold text-gray-900'>
-                Gracias por tu consulta
+              <div className='mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 mb-4'>
+                <CheckCircle2 className='h-10 w-10' />
+              </div>
+
+              <h3 className='text-2xl font-bold text-gray-900 sm:text-3xl'>
+                ¡Gracias por contactarnos!
               </h3>
-              <p className='mt-2 text-gray-500'>
-                Recibimos tu mensaje correctamente. Nos comunicaremos a la
-                brevedad.
+              
+              <p className='mt-3 text-base text-gray-600 max-w-md mx-auto'>
+                Recibimos tu consulta con éxito. En breve nos pondremos en contacto con vos para responder a todas tus dudas y coordinar tus clases.
               </p>
 
+              <div className='mt-6 rounded-lg bg-emerald-50 border border-emerald-200 p-4 max-w-md mx-auto'>
+                <p className='text-sm font-medium text-emerald-800 mb-2'>
+                  ¿Precisás una respuesta inmediata?
+                </p>
+                <a
+                  href='https://wa.me/2255627189?text=Hola,%20acabo%20de%20enviar%20una%20consulta%20por%20la%20web%20de%20Autoescuela%20GMC'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow transition-all hover:bg-[#20ba59]'
+                >
+                  <MessageCircle className='h-4 w-4' />
+                  Escribinos por WhatsApp
+                </a>
+              </div>
+
               <div className='mt-6'>
-                <p className='text-sm font-medium text-gray-900'>
+                <p className='text-sm font-medium text-gray-700'>
                   Mientras tanto, seguinos en nuestras redes
                 </p>
                 <div className='mt-3 flex justify-center gap-3'>
@@ -269,14 +310,15 @@ export function ContactForm() {
                 </div>
               </div>
 
-              <Button
-                type='button'
-                variant='outline'
-                className='mt-6'
-                onClick={() => setIsSubmitted(false)}
-              >
-                Enviar otra consulta
-              </Button>
+              <div className='mt-8 pt-4 border-t border-gray-100'>
+                <Button
+                  type='button'
+                  variant='outline'
+                  onClick={() => setIsSubmitted(false)}
+                >
+                  Enviar otra consulta
+                </Button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className='grid gap-4'>
@@ -433,11 +475,11 @@ export function ContactForm() {
               <Button
                 type='submit'
                 disabled={isSubmitting}
-                className='mt-2 gap-2'
+                className='mt-2 h-12 w-full gap-2 text-base'
                 aria-busy={isSubmitting}
               >
                 {isSubmitting && <Loader2 className='h-4 w-4 animate-spin' />}
-                {isSubmitting ? 'Enviando mensaje' : 'Enviar mensaje'}
+                {isSubmitting ? 'Enviando consulta...' : 'Enviar consulta'}
               </Button>
 
               {isSubmitting && (
@@ -452,7 +494,7 @@ export function ContactForm() {
               )}
             </form>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

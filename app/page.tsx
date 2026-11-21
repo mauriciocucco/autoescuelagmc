@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Navbar } from '@/components/navbar';
 import { Hero } from '@/components/hero';
+import { TrustStrip } from '@/components/trust-strip';
 import { Features } from '@/components/features';
 import { Testimonials } from '@/components/testimonials';
 import { Instructor } from '@/components/instructor';
@@ -64,6 +65,7 @@ export default function Home() {
       <Navbar />
       <main className='flex-1'>
         <Hero />
+        <TrustStrip />
         {/* <FriendshipModal /> */}
         {/* <GiftCardModal /> */}
         <Features />

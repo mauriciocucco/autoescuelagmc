@@ -1,111 +1,95 @@
-import { Card, CardContent } from '@/components/ui/card';
 import { Star } from 'lucide-react';
+import { Reveal } from '@/components/reveal';
+
+const testimonials = [
+  {
+    initials: 'SC',
+    name: 'Sonia Cordoba',
+    meta: 'Alumna - 2026',
+    quote:
+      'Muy buena experiencia. En mi caso fue para manejo de moto. Recomendable Autoescuela GMC!',
+  },
+  {
+    initials: 'RZ',
+    name: 'Romina Zelaya',
+    meta: 'Alumna - 2026',
+    quote:
+      'Excelente experiencia. Guido transmite la importancia de conducir con responsabilidad y conciencia, cuidando tanto la propia vida como la de los demás. Mucha paciencia, compromiso y profesionalismo. Muy recomendable.',
+  },
+  {
+    initials: 'SZ',
+    name: 'Sabrina Zarza',
+    meta: 'Alumna - 2026',
+    quote:
+      'Gran instructor de manejo Guido y su equipo! El acompañamiento es de 10, profesional, paciente, empático, respetuoso del ritmo de cada persona que se propone el objetivo de aprender a manejar y sacar su licencia. Te dan consejos personalizados para ganar confianza y superar las inseguridades al volante. Se nota el compromiso y las ganas que le ponen para acompañarte en todo el proceso, entendiendo que el aprendizaje de cada quien es diferente y ajustando las estrategias de instrucción a las necesidades de cada caso en particular. Lo recomiendo totalmente!',
+  },
+];
 
 export function Testimonials() {
   return (
     <section
       id='testimonios'
-      className='w-full py-12 md:py-24 lg:py-14 bg-gray-50'
+      className='relative w-full overflow-hidden bg-ink py-16 md:py-24 text-white'
     >
-      <div className='container px-4 md:px-6 mx-auto'>
-        <div className='flex flex-col items-center justify-center space-y-4 text-center'>
-          <div className='space-y-2'>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>
-              Lo que dicen nuestros alumnos
-            </h2>
-            <p className='max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
-              Testimonios de personas que aprendieron a conducir con nosotros
-            </p>
-          </div>
-        </div>
-        <div className='mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12'>
-          <Card className='rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between'>
-            <CardContent className='p-6 flex flex-col justify-between h-full'>
-              <div>
-                <div className='flex items-center space-x-1 mb-2'>
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
+      <div
+        aria-hidden='true'
+        className='pointer-events-none absolute -right-32 top-0 h-[26rem] w-[26rem] rounded-full bg-brand-600/25 blur-[130px]'
+      />
+      <div
+        aria-hidden='true'
+        className='pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-800/30 blur-[110px]'
+      />
+
+      <div className='container relative px-4 md:px-6 mx-auto'>
+        <Reveal className='max-w-2xl'>
+          <span className='inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-300'>
+            Testimonios
+          </span>
+          <h2 className='mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl'>
+            Lo que dicen nuestros alumnos
+          </h2>
+          <p className='mt-3 text-slate-400 md:text-lg'>
+            Personas que aprendieron a conducir con nosotros y hoy manejan con
+            confianza.
+          </p>
+        </Reveal>
+
+        <div className='mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3'>
+          {testimonials.map((testimonial, index) => (
+            <Reveal
+              key={testimonial.name}
+              delay={index * 120}
+              className='h-full'
+            >
+              <div className='group flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-400/40 hover:bg-white/[0.07]'>
+                <div className='mb-4 flex items-center space-x-1'>
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <Star
+                      key={starIndex}
+                      className='h-4 w-4 fill-brand-400 text-brand-400 transition-transform duration-300 group-hover:scale-110'
+                      style={{ transitionDelay: `${starIndex * 30}ms` }}
+                    />
+                  ))}
                 </div>
-                <p className='text-sm text-gray-500 mb-4'>
-                  "Muy buena experiencia. En mi caso fue para manejo de moto. Recomendable Autoescuela GMC!"
+                <p className='text-sm leading-relaxed text-slate-300'>
+                  &quot;{testimonial.quote}&quot;
                 </p>
-              </div>
-              <div className='flex items-center space-x-3'>
-                <div className='w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center'>
-                  <span className='text-sm font-medium'>FA</span>
-                </div>
-                <div>
-                  <p className='text-sm font-medium'>Sonia Cordoba</p>
-                  <p className='text-xs text-gray-500'>Alumna - 2026</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className='rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between'>
-            <CardContent className='p-6 flex flex-col justify-between h-full'>
-              <div>
-                <div className='flex items-center space-x-1 mb-2'>
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                </div>
-                <p className='text-sm text-gray-500 mb-4'>
-                  "Excelente experiencia. Guido transmite la importancia de
-                  conducir con responsabilidad y conciencia, cuidando tanto la
-                  propia vida como la de los demás. Mucha paciencia, compromiso
-                  y profesionalismo. Muy recomendable."
-                </p>
-              </div>
-              <div className='flex items-center space-x-3'>
-                <div className='w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center'>
-                  <span className='text-sm font-medium'>JME</span>
-                </div>
-                <div>
-                  <p className='text-sm font-medium'>Romina Zelaya</p>
-                  <p className='text-xs text-gray-500'>Alumna - 2026</p>
+                <div className='mt-auto flex items-center space-x-3 pt-6'>
+                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-brand-500/15 text-brand-300 ring-1 ring-brand-400/20 transition-transform duration-300 group-hover:scale-105'>
+                    <span className='text-sm font-semibold'>
+                      {testimonial.initials}
+                    </span>
+                  </div>
+                  <div>
+                    <p className='text-sm font-semibold text-white'>
+                      {testimonial.name}
+                    </p>
+                    <p className='text-xs text-slate-500'>{testimonial.meta}</p>
+                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-          <Card className='rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between'>
-            <CardContent className='p-6 flex flex-col justify-between h-full'>
-              <div>
-                <div className='flex items-center space-x-1 mb-2'>
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                  <Star className='h-5 w-5 fill-primary text-primary' />
-                </div>
-                <p className='text-sm text-gray-500 mb-4'>
-                  "Gran instructor de manejo Guido y su equipo! El
-                  acompañamiento es de 10, profesional, paciente, empático,
-                  respetuoso del ritmo de cada persona que se propone el
-                  objetivo de aprender a manejar y sacar su licencia. Te dan
-                  consejos personalizados para ganar confianza y superar las
-                  inseguridades al volante. Se nota el compromiso y las ganas
-                  que le ponen para acompañarte en todo el proceso, entendiendo
-                  que el aprendizaje de cada quien es diferente y ajustando las
-                  estrategias de instrucción a las necesidades de cada caso en
-                  particular. Lo recomiendo totalmente!"
-                </p>
-              </div>
-              <div className='flex items-center space-x-3'>
-                <div className='w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center'>
-                  <span className='text-sm font-medium'>AC</span>
-                </div>
-                <div>
-                  <p className='text-sm font-medium'>Sabrina Zarza</p>
-                  <p className='text-xs text-gray-500'>Alumna - 2026</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

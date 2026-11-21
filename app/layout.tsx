@@ -1,13 +1,15 @@
 import type React from 'react';
 import type { Metadata, Viewport } from 'next';
 import '@/app/globals.css';
-import { Inter } from 'next/font/google';
+import { Inter, Manrope } from 'next/font/google';
 import { GoogleAnalytics } from '@/components/google-analytics';
 import { GoogleTagManager } from '@/components/google-tag-manager';
 import { ThemeProvider } from '@/components/theme-provider';
 import { WhatsAppButton } from '@/components/whatsapp-button';
+import { Toaster } from '@/components/ui/toaster';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const manrope = Manrope({ subsets: ['latin'], variable: '--font-display' });
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const gtmContainerId = process.env.NEXT_PUBLIC_GTM_ID;
 
@@ -92,7 +94,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='es' suppressHydrationWarning>
-      <body className={inter.className}>
+      <body
+        className={`${inter.variable} ${manrope.variable} font-sans antialiased`}
+      >
         {gtmContainerId ? (
           <GoogleTagManager containerId={gtmContainerId} />
         ) : null}
@@ -103,6 +107,7 @@ export default function RootLayout({
         >
           {children}
           <WhatsAppButton />
+          <Toaster />
         </ThemeProvider>
         {!gtmContainerId && gaMeasurementId ? (
           <GoogleAnalytics measurementId={gaMeasurementId} />

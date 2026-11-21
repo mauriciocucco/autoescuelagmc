@@ -1,59 +1,64 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { CreditCard, Banknote, Landmark, Receipt } from "lucide-react";
 import Image from "next/image";
+import { Reveal } from "@/components/reveal";
+
+const paymentMethods = [
+  {
+    icon: CreditCard,
+    title: "Tarjetas de Débito/Crédito",
+    description: "Aceptamos todas las tarjetas principales",
+  },
+  {
+    icon: Banknote,
+    title: "Billeteras virtuales",
+    description: "Mercadopago, Cuenta DNI, Naranja X",
+  },
+  {
+    icon: Landmark,
+    title: "Transferencia Bancaria",
+    description: "Realizá una transferencia a nuestra cuenta bancaria",
+  },
+  {
+    icon: Receipt,
+    title: "Planes de Pago",
+    description: "Opciones de pago en cuotas sin interés",
+  },
+];
 
 export function PaymentMethods() {
   return (
-    <section id="pagos" className="w-full py-6 md:py-8 lg:py-14 bg-gray-50">
+    <section id="pagos" className="w-full bg-[#F4F7FE] py-16 md:py-24">
       <div className="container px-4 md:px-6 mx-auto">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Métodos de Pago
-            </h2>
-            <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Ofrecemos múltiples opciones para que puedas pagar de la manera
-              más cómoda
-            </p>
-          </div>
-        </div>
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12">
-          <Card className="shadow-lg">
-            <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-              <CreditCard className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-bold">Tarjetas de Débito/Crédito</h3>
-              <p className="text-sm text-gray-500 mt-2">
-                Aceptamos todas las tarjetas principales
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="shadow-lg">
-            <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-              <Banknote className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-bold">Billeteras virtuales</h3>
-              <p className="text-sm text-gray-500 mt-2">
-                Mercadopago, Cuenta DNI, Naranja X
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="shadow-lg">
-            <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-              <Landmark className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-bold">Transferencia Bancaria</h3>
-              <p className="text-sm text-gray-500 mt-2">
-                Realizá una transferencia a nuestra cuenta bancaria
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="shadow-lg">
-            <CardContent className="p-6 flex flex-col items-center justify-center text-center">
-              <Receipt className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-bold">Planes de Pago</h3>
-              <p className="text-sm text-gray-500 mt-2">
-                Opciones de pago en cuotas sin interés
-              </p>
-            </CardContent>
-          </Card>
+        <Reveal className="max-w-2xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-700">
+            Pagos
+          </span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-5xl">
+            Métodos de Pago
+          </h2>
+          <p className="mt-3 text-slate-500 md:text-lg">
+            Ofrecemos múltiples opciones para que puedas pagar de la manera más
+            cómoda.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {paymentMethods.map((method, index) => (
+            <Reveal key={method.title} delay={index * 100} className="h-full">
+              <Card className="group h-full rounded-2xl border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-card">
+                <CardContent className="flex h-full flex-col items-start p-6">
+                  <div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110">
+                    <method.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold text-ink">{method.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                    {method.description}
+                  </p>
+                </CardContent>
+              </Card>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
@@ -82,7 +87,7 @@ export function GiftCardSection() {
               alt="Gift Card Autoescuela GMC"
               width={500}
               height={300}
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg w-full h-auto"
             />
           </div>
           <p className="mt-6 text-gray-500 text-center">

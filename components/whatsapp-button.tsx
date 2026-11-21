@@ -20,13 +20,18 @@ export function WhatsAppButton() {
 
   return (
     <div className='fixed bottom-6 right-6 z-50'>
+      {/* Anillo pulsante para llamar la atención */}
+      <span
+        aria-hidden='true'
+        className='pointer-events-none absolute inset-0 animate-ping rounded-full bg-[#25D366]/50'
+      />
       <button
         onClick={openWhatsApp}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         onFocus={() => setShowTooltip(true)}
         onBlur={() => setShowTooltip(false)}
-        className='w-16 h-16 rounded-full shadow-lg hover:opacity-90 transition-opacity overflow-hidden'
+        className='relative z-10 w-16 h-16 rounded-full shadow-lg transition-transform duration-300 hover:scale-105 active:scale-95 overflow-hidden'
         aria-label='Contactar por WhatsApp'
       >
         <div className='w-full h-full relative'>
@@ -43,7 +48,7 @@ export function WhatsAppButton() {
 
       {/* Tooltip */}
       {showTooltip && (
-        <div className='absolute bottom-20 right-0 w-64 p-3 bg-white rounded-lg shadow-lg text-sm text-gray-700 border border-gray-200 animate-fade-in'>
+        <div className='absolute bottom-20 right-0 w-64 p-3 bg-white rounded-lg shadow-lg text-sm text-gray-700 border border-gray-200 animate-in fade-in-0 zoom-in-95 slide-in-from-bottom-2 duration-200'>
           <div className='relative'>
             <p>Consultanos cualquier duda por nuestro WhatsApp</p>
             <div className='absolute -bottom-7 right-6 h-4 w-4 rotate-45 bg-white border-r border-b border-gray-200'></div>

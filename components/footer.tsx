@@ -1,89 +1,133 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import Image from 'next/image';
+import {
+  ArrowRight,
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+} from 'lucide-react';
+
+const quickLinks = [
+  { href: '/#inicio', label: 'Inicio' },
+  { href: '/#servicios', label: 'Servicios' },
+  { href: '/#testimonios', label: 'Testimonios' },
+  { href: '/#instructor', label: 'Instructor' },
+  { href: '/#contacto', label: 'Contacto' },
+];
 
 export function Footer() {
   return (
-    <footer className='w-full border-t bg-gray-50'>
-      <div className='container px-4 md:px-6 py-8 mx-auto'>
-        <div className='grid gap-8 md:grid-cols-2 lg:grid-cols-4'>
+    <footer className='w-full bg-ink text-slate-400'>
+      <div className='container mx-auto px-4 py-14 md:px-6'>
+        <div className='grid gap-10 md:grid-cols-2 lg:grid-cols-4'>
           <div className='space-y-4'>
-            <h3 className='text-lg font-bold'>Autoescuela GMC</h3>
-            <p className='text-sm text-gray-500'>
+            <Image
+              src='/images/logo.jpg'
+              alt='Autoescuela GMC'
+              width={720}
+              height={165}
+              className='h-9 w-auto object-contain mix-blend-lighten'
+            />
+            <p className='max-w-xs text-sm leading-relaxed'>
               Enseñando a conducir de manera segura y responsable desde 2021.
             </p>
-          </div>
-          <div className='space-y-4'>
-            <h3 className='text-lg font-bold'>Enlaces rápidos</h3>
-            <ul className='space-y-2 text-sm'>
-              <li>
-                <Link
-                  href='#inicio'
-                  className='text-gray-500 hover:text-gray-900'
-                >
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='#servicios'
-                  className='text-gray-500 hover:text-gray-900'
-                >
-                  Servicios
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='#testimonios'
-                  className='text-gray-500 hover:text-gray-900'
-                >
-                  Testimonios
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='#contacto'
-                  className='text-gray-500 hover:text-gray-900'
-                >
-                  Contacto
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className='space-y-4'>
-            <h3 className='text-lg font-bold'>Contacto</h3>
-            <ul className='space-y-2 text-sm'>
-              <li className='text-gray-500'>
-                Paseo 117 n° 354, Villa Gesell, Bs. As.
-              </li>
-              <li className='text-gray-500'>
-                Villa Gesell, Pinamar y el Partido de la Costa
-              </li>
-              <li className='text-gray-500'>autoescuelagmc@gmail.com</li>
-              <li className='text-gray-500'>2255-627189</li>
-            </ul>
-          </div>
-          <div className='space-y-4'>
-            <h3 className='text-lg font-bold'>Seguínos</h3>
-            <div className='flex space-x-4'>
-              <Link
+            <div className='flex gap-2'>
+              <a
                 href='https://www.facebook.com/p/Autoescuela-GMC-100092333736848/'
-                className='text-gray-500 hover:text-gray-900'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='grid h-9 w-9 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-brand-400/40 hover:bg-white/5 hover:text-white'
+                aria-label='Facebook'
               >
-                <Facebook className='h-5 w-5' />
-                <span className='sr-only'>Facebook</span>
-              </Link>
-              <Link
+                <Facebook className='h-4 w-4' />
+              </a>
+              <a
                 href='https://www.instagram.com/clasesdemanejo_gmc/'
-                className='text-gray-500 hover:text-gray-900'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='grid h-9 w-9 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-brand-400/40 hover:bg-white/5 hover:text-white'
+                aria-label='Instagram'
               >
-                <Instagram className='h-5 w-5' />
-                <span className='sr-only'>Instagram</span>
-              </Link>
+                <Instagram className='h-4 w-4' />
+              </a>
             </div>
           </div>
+
+          <div>
+            <h3 className='text-xs font-semibold uppercase tracking-[0.18em] text-white'>
+              Enlaces rápidos
+            </h3>
+            <ul className='mt-4 space-y-2.5 text-sm'>
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className='transition-colors hover:text-white'
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className='text-xs font-semibold uppercase tracking-[0.18em] text-white'>
+              Contacto
+            </h3>
+            <ul className='mt-4 space-y-3 text-sm'>
+              <li className='flex items-start gap-2.5'>
+                <MapPin className='mt-0.5 h-4 w-4 shrink-0 text-brand-400' />
+                <span>Paseo 117 n° 354, Villa Gesell, Bs. As.</span>
+              </li>
+              <li className='flex items-start gap-2.5'>
+                <MapPin className='mt-0.5 h-4 w-4 shrink-0 text-brand-400' />
+                <span>Villa Gesell, Pinamar y el Partido de la Costa</span>
+              </li>
+              <li className='flex items-center gap-2.5'>
+                <Mail className='h-4 w-4 shrink-0 text-brand-400' />
+                <a
+                  href='mailto:autoescuelagmc@gmail.com'
+                  className='transition-colors hover:text-white'
+                >
+                  autoescuelagmc@gmail.com
+                </a>
+              </li>
+              <li className='flex items-center gap-2.5'>
+                <Phone className='h-4 w-4 shrink-0 text-brand-400' />
+                <a
+                  href='tel:+542255627189'
+                  className='transition-colors hover:text-white'
+                >
+                  2255-627189
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className='space-y-4'>
+            <h3 className='text-xs font-semibold uppercase tracking-[0.18em] text-white'>
+              ¿Listo para manejar?
+            </h3>
+            <p className='text-sm leading-relaxed'>
+              Reservá tu clase y empezá el camino hacia tu licencia con
+              acompañamiento real.
+            </p>
+            <Link
+              href='/#contacto'
+              className='group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-700 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:from-brand-400 hover:to-brand-600'
+            >
+              Reservá tu clase
+              <ArrowRight className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5' />
+            </Link>
+          </div>
         </div>
-        <div className='mt-8 border-t pt-8 text-center text-sm text-gray-500'>
-          <p>© 2025 Autoescuela GMC. Todos los derechos reservados.</p>
+
+        <div className='mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row'>
+          <p>© 2026 Autoescuela GMC. Todos los derechos reservados.</p>
+          <p>Villa Gesell · Pinamar · Partido de la Costa</p>
         </div>
       </div>
     </footer>

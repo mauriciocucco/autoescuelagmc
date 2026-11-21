@@ -1,60 +1,90 @@
 import Image from 'next/image';
+import { Check } from 'lucide-react';
 import { TrackedExternalLink } from '@/components/tracked-external-link';
+import { Reveal } from '@/components/reveal';
+
+const includes = [
+  'Clase personalizada con instructor matriculado',
+  'Clases prácticas y teóricas de manejo',
+  'Material de apoyo para el examen teórico',
+  'Práctica en circuito real',
+  'Tarjeta digital o física para regalar',
+];
 
 export function GiftCardSection() {
   return (
-    <section id='giftcard' className='md:py-20 py-8 bg-white'>
-      <div className='container mx-auto px-4 md:px-6'>
-        <div className='text-center max-w-3xl mx-auto md:mb-14 mb-6'>
-          <div className='flex items-center justify-center gap-4 mb-4'>
-            <h2 className=' text-black text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>
-              GIFT CARD
-            </h2>
+    <section
+      id='giftcard'
+      className='relative overflow-hidden bg-ink py-16 text-white md:py-24'
+    >
+      <div
+        aria-hidden='true'
+        className='pointer-events-none absolute -left-32 top-1/3 h-[26rem] w-[26rem] rounded-full bg-brand-600/25 blur-[130px]'
+      />
+      <div
+        aria-hidden='true'
+        className='pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-brand-800/30 blur-[110px]'
+      />
+
+      <div className='container relative mx-auto px-4 md:px-6'>
+        <Reveal className='mx-auto max-w-2xl text-center'>
+          <span className='inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-300'>
+            Gift Card
+          </span>
+          <h2 className='mt-4 flex items-center justify-center gap-3 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl'>
+            Un regalo para toda la vida
             <Image
               src='/images/gift-card-gmc.png'
               alt='Icono Gift Card GMC'
               width={40}
               height={40}
-              className='object-contain'
+              className='h-8 w-8 object-contain'
             />
-          </div>
-          <p className=' text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-2xl/relaxed'>
-            Un regalo para toda la vida
+          </h2>
+          <p className='mt-3 text-slate-400 md:text-lg'>
+            Regalá confianza, independencia y seguridad al volante.
           </p>
-        </div>
+        </Reveal>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-center'>
-          <div className='flex justify-center'>
-            <Image
-              src='/images/gift-card.jpg'
-              alt='Tarjeta de regalo para clases de manejo de autoescuela, con diseño moderno.'
-              width={500}
-              height={320}
-              className='rounded-xl shadow-lg'
-            />
-          </div>
+        <div className='mt-12 grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14'>
+          <Reveal className='flex justify-center'>
+            <div className='relative'>
+              <div
+                aria-hidden='true'
+                className='absolute -inset-6 rounded-[2rem] bg-brand-500/20 blur-3xl'
+              />
+              <Image
+                src='/images/gift-card.jpg'
+                alt='Tarjeta de regalo para clases de manejo de autoescuela, con diseño moderno.'
+                width={500}
+                height={320}
+                className='relative rounded-2xl border border-white/10 shadow-card transition-transform duration-500 ease-out hover:-rotate-1 hover:scale-[1.03]'
+              />
+            </div>
+          </Reveal>
 
-          <div>
-            <p className='text-gray-700 mb-6 leading-relaxed max-w-lg'>
-              Regalá confianza, independencia y seguridad al volante. Ideal para
-              estas fiestas, cumpleaños, egresos o para quien está listo para
-              dar su primer paso hacia la conducción. Con nuestra{' '}
-              <span className='font-bold'>Gift Card</span>, regalás una
-              experiencia completa de aprendizaje.
+          <Reveal delay={150}>
+            <p className='max-w-lg leading-relaxed text-slate-300'>
+              Ideal para estas fiestas, cumpleaños, egresos o para quien está
+              listo para dar su primer paso hacia la conducción. Con nuestra{' '}
+              <span className='font-semibold text-white'>Gift Card</span>,
+              regalás una experiencia completa de aprendizaje.
             </p>
 
-            <div className='mb-6'>
-              <h4 className='text-xl font-bold text-black mb-3'>
-                ¿Qué incluye?
-              </h4>
-              <ul className='space-y-2 text-gray-700'>
-                <li>✔ Clase personalizada con instructor matriculado</li>
-                <li>✔ Clases prácticas y teóricas de manejo</li>
-                <li>✔ Material de apoyo para el examen teórico</li>
-                <li>✔ Práctica en circuito real</li>
-                <li>✔ Tarjeta digital o física para regalar</li>
-              </ul>
-            </div>
+            <h4 className='mt-7 text-sm font-semibold uppercase tracking-[0.18em] text-brand-300'>
+              ¿Qué incluye?
+            </h4>
+            <ul className='mt-4 space-y-3'>
+              {includes.map((item) => (
+                <li key={item} className='flex items-start gap-3'>
+                  <span className='mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-500/15 text-brand-300 ring-1 ring-brand-400/20'>
+                    <Check className='h-3 w-3' />
+                  </span>
+                  <span className='text-sm text-slate-300'>{item}</span>
+                </li>
+              ))}
+            </ul>
+
             <TrackedExternalLink
               href='https://wa.me/2255627189?text=Hola,%20me%20interesa%20regalar%20una%20Gift%20Card,%20quiero%20más%20info%20...'
               target='_blank'
@@ -64,20 +94,18 @@ export function GiftCardSection() {
                 location: 'gift_card_section',
                 campaign: 'gift_card',
               }}
-              className='inline-block bg-primary text-white px-6 py-3 rounded-lg shadow-lg hover:bg-primary/90 transition duration-200 ease-in-out w-full sm:w-auto text-center font-semibold'
+              className='mt-8 inline-block w-full rounded-full bg-gradient-to-r from-brand-500 to-brand-700 px-6 py-3.5 text-center font-semibold text-white shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:from-brand-400 hover:to-brand-600 sm:w-auto'
             >
               Quiero regalar una Gift Card
             </TrackedExternalLink>
 
-            <p className='text-xs text-gray-500 mt-3'>
+            <p className='mt-3 text-xs text-slate-500'>
               *Consultá por todos los medios de pago.
             </p>
 
-            <div className='flex flex-col items-center md:items-start mt-6'>
-              <p className='text-base font-bold text-gray-700 mb-2'>
-                Compartir :
-              </p>
-              <div className='flex space-x-4'>
+            <div className='mt-7 flex items-center gap-4'>
+              <p className='text-sm font-semibold text-slate-400'>Compartir:</p>
+              <div className='flex gap-2'>
                 <TrackedExternalLink
                   href='https://wa.me/?text=¡Mirá%20esta%20Gift%20Card!.%20https://www.autoescuelagmc.com/#giftcard'
                   target='_blank'
@@ -88,11 +116,12 @@ export function GiftCardSection() {
                     location: 'gift_card_share',
                     campaign: 'gift_card',
                   }}
+                  className='grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 transition-colors hover:bg-white/10'
                 >
                   <img
                     src='/images/whatsapp.png'
                     alt='WhatsApp'
-                    className='w-7 h-7'
+                    className='h-5 w-5'
                   />
                 </TrackedExternalLink>
                 <a
@@ -100,16 +129,17 @@ export function GiftCardSection() {
                   target='_blank'
                   rel='noopener noreferrer'
                   aria-label='Enviar por Facebook Messenger'
+                  className='grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 transition-colors hover:bg-white/10'
                 >
                   <img
                     src='/images/facebook.png'
                     alt='Facebook Messenger'
-                    className='w-6 h-6'
+                    className='h-4 w-4'
                   />
                 </a>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

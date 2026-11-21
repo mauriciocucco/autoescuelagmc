@@ -4,15 +4,48 @@
 
 html {
   color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+/* Evita que el header sticky tape el inicio de cada sección al navegar */
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), var(--font-sans), Arial, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+::selection {
+  background-color: #0b5fff;
+  color: #ffffff;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .bg-grid-light {
+    background-image:
+      linear-gradient(to right, rgba(5, 10, 20, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(5, 10, 20, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
   }
 }
 
@@ -225,4 +258,88 @@ body {
   background: #ff3300;
   width: 3px;
   height: 3px;
+}
+
+/* ===== Animaciones de la landing ===== */
+
+/* Entrada escalonada del texto del hero */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Ken Burns: zoom lento sobre la imagen activa del carrusel */
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.kenburns {
+  animation: kenburns 9s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+.kenburns.is-active {
+  animation-play-state: running;
+}
+
+/* Barra de progreso de los indicadores del hero */
+@keyframes indicator-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Glow sutil del CTA principal */
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 102, 204, 0.45);
+  }
+
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 102, 204, 0);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2.8s ease-out infinite;
+}
+
+/* Accesibilidad: respetar la preferencia de menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
 }
